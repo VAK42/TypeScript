@@ -111,3 +111,59 @@ function C(D: any): void {
   A(D);
   console.log(D.toUpperCase());
 }
+
+/*
+* Discriminated Unions *
+Use A Common Literal Property To Narrow Types In A Union By Using Different Interfaces With A Shared 'Kind' Field
+Allow Safe Access To Properties Specific To Each Variant Without Needing Non-Null Assertions
+*/
+interface A {
+  kind: 'circle';
+  radius: number;
+}
+
+interface B {
+  kind: 'square';
+  sideLength: number;
+}
+
+type C = A | B;
+
+function f(a: C) {
+  switch (a.kind) {
+    case 'circle':
+      return Math.PI * a.radius ** 2;
+    case 'square':
+      return a.sideLength ** 2;
+  }
+}
+
+/*
+* never *
+Represent Values That Should Never Occur
+Assignable To Every Type But No Type Can Be Assigned To It Except 'never' Itself
+Useful To Mark Impossible Code Paths After Exhaustive Checks
+*/
+
+/*
+* Exhaustiveness Checking *
+Use 'never' To Ensure All Cases - Handled In A Switch
+*/
+interface D {
+  kind: "triangle";
+  sideLength: number;
+}
+
+type E = A | B | D;
+
+function g(a: E) {
+  switch (a.kind) {
+    case "circle":
+      return Math.PI * a.radius ** 2;
+    case "square":
+      return a.sideLength ** 2;
+    default:
+      const h: never = a;
+      return h;
+  }
+}
