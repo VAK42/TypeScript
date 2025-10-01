@@ -102,8 +102,8 @@ function y(z: s | u): void {
 Narrow Types By Throwing If A Condition Is Not Met
 */ 
 function A(B: any): asserts B is string {
-  if (typeof B !== "string") {
-    throw new Error("Not a string");
+  if (typeof B !== 'string') {
+    throw new Error('Not A string');
   }
 }
 
