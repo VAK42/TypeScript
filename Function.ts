@@ -1,4 +1,4 @@
-// ---------- Function Type Expressions ----------
+// *Function Type Expression*
 function A(Fn: (A: string) => void) {
   Fn('VAK');
 }
@@ -7,24 +7,24 @@ function B(S: string) {
 }
 A(B);
 
-// Using Type Alias For Function Type
+// Type Alias For Function Type
 type C = (A: string) => void;
 function D(Fn: C) {
-  Fn("Test");
+  Fn('VAK');
 }
 
-// ---------- Call Signatures ----------
+// *Call Signature*
 type E = {
   Description: string;
   (SomeArg: number): boolean;
 };
 function F(Fn: E) {
-  console.log(Fn.Description + " Returned " + Fn(6));
+  console.log(Fn.Description + ' Returned ' + Fn(6));
 }
 function G(SomeArg: number) {
   return SomeArg > 3;
 }
-G.Description = "Default Description";
+G.Description = 'Default Description';
 F(G);
 
 // ---------- Construct Signatures ----------
