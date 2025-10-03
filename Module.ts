@@ -68,16 +68,6 @@ const { C: AB } = require('./0');
 console.log(AB);
 
 /*
-ESModules <-> CommonJS Interop => esModuleInterop
-Module Resolution
-- Classic | Node (Node Preferred)
-- Controlled By: moduleResolution, baseUrl, paths, rootDirs
-Output Controlled By:
-- target → JS Features
-- module → Module System (ES2020, CommonJS, UMD)
-*/
-
-/*
 ESModules → Modern JS
 CommonJS → Legacy / Node
 */
