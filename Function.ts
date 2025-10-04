@@ -27,73 +27,73 @@ function G(SomeArg: number) {
 G.Description = 'Default Description';
 F(G);
 
-// ---------- Construct Signatures ----------
+// *Construct Signature*
 type H = {
   new (S: string): I;
 };
 function J(Ctor: H) {
-  return new Ctor("Hello");
+  return new Ctor('VAK');
 }
 class I {
   constructor(public Value: string) {}
 }
 
-// ---------- Call Or Construct ----------
+// *Call | Construct*
 interface K {
-  (N?: number): string;
-  new (S: string): Date;
+  (N?: number): string;   // Call Signature
+  new (S: string): Date;  // Construct Signature
 }
 function L(Ctor: K) {
-  console.log(Ctor(10)); // Call Signature
-  console.log(new Ctor("10")); // Construct Signature
+  console.log(Ctor(10));        // Call Signature
+  console.log(new Ctor('10'));  // Construct Signature
 }
 L(Date);
 
-// ---------- Generic Functions ----------
+// *Generic Function*
 function M<T>(Arr: T[]): T | undefined {
   return Arr[0];
 }
-const N = M(["A", "B", "C"]); // Inferred As String
-const O = M([1, 2, 3]);       // Inferred As Number
-const P = M([]);              // Inferred As Undefined
+const N = M(['A', 'B', 'C']);  // Inferred As String
+const O = M([1, 2, 3]);        // Inferred As Number
+const P = M([]);               // Inferred As Undefined
 
-// Generic Map Example
+// Generic Map
 function Q<Input, Output>(Arr: Input[], Func: (Arg: Input) => Output): Output[] {
   return Arr.map(Func);
 }
-const R = Q(["1", "2", "3"], (N) => parseInt(N)); // String -> Number
+const R = Q(['4', '2', '8'], (N) => parseInt(N));  // String -> Number
 
-// ---------- Constraints ----------
+// *Constraint*
 function S<T extends { Length: number }>(A: T, B: T) {
   return A.Length >= B.Length ? A : B;
 }
-const T1 = S([1, 2], [1, 2, 3]);  // Works With Arrays
-const T2 = S("Alice", "Bob");     // Works With Strings
-// const T3 = S(10, 20);          // Error, Numbers Have No Length
+const T0 = S([1, 2], [1, 2, 4]);  // Works With Arrays
+const T2 = S('VAK', 'K42');       // Works With Strings
+const T4 = S(10, 20);             // Error - Numbers Have No Length
 
-// ---------- Optional Parameters ----------
+// *Optional Parameter*
 function U(N?: number) {
   console.log(N?.toFixed());
 }
-U();
-U(10);
+U();    // Undefined
+U(10);  // 10
 
 function V(X = 10) {
   console.log(X);
 }
-V();
-V(undefined);
+V();           // 10
+V(undefined);  // 10
 
-// ---------- Callback Parameters ----------
+// *Callback Parameter*
 function W(Arr: any[], Callback: (Arg: any, Index: number) => void) {
   for (let I = 0; I < Arr.length; I++) {
     Callback(Arr[I], I);
   }
 }
-W([1, 2, 3], (A) => console.log(A));
-W([1, 2, 3], (A, I) => console.log(A, I));
+W([1, 2, 4], (A) => console.log(A));
+W([1, 2, 4], (A, I) => console.log(A, I));
 
-// ---------- Function Overloads ----------
+// *Function Overload*
 function X(Timestamp: number): Date;
 function X(M: number, D: number, Y: number): Date;
 function X(MOrTimestamp: number, D?: number, Y?: number): Date {
@@ -103,11 +103,11 @@ function X(MOrTimestamp: number, D?: number, Y?: number): Date {
     return new Date(MOrTimestamp);
   }
 }
-const Y1 = X(12345678);
+const Y0 = X(12345678);
 const Y2 = X(5, 5, 5);
-// const Y3 = X(1, 2); // Error, Only 1 Or 3 Arguments Allowed
+const Y4 = X(1, 2);  // Error - Only 1 | 3 Arguments Allowed
 
-// ---------- Declaring "This" ----------
+// *Declaring 'This'*
 interface ZDB {
   FilterUsers(Filter: (this: ZUser) => boolean): ZUser[];
 }
