@@ -1,12 +1,8 @@
-// ================================
-// Classes In TypeScript
-// ================================
-
-// ---------- Empty Class ----------
+// *Empty Class*
 class a {}
 const b = new a();
 
-// ---------- Fields ----------
+// *Field*
 class c {
   d: number;
   e: number;
@@ -20,36 +16,36 @@ class g {
   i = 0;
 }
 const j = new g();
-console.log(`${j.h}, ${j.i}`);
+console.log(`${j.h} - ${j.i}`);
 
-// ---------- Strict Property Initialization ----------
+// *Strict Property Initialization*
 class k {
-  l: string; // Error Without Initialization
+  l: string;  // Error Without Initialization
 }
 class m {
   n: string;
   constructor() {
-    this.n = "hello";
+    this.n = 'VAK';
   }
 }
 class o {
-  p!: string; // Definite Assignment Assertion
+  p!: string;  // Definite Assignment Assertion
 }
 
-// ---------- Readonly ----------
+// *Readonly*
 class q {
-  readonly r: string = "world";
+  readonly r: string = 'VAK';
   constructor(s?: string) {
     if (s !== undefined) this.r = s;
   }
   t() {
-    this.r = "bad"; // ❌ Error
+    this.r = '42';  // Error
   }
 }
 const u = new q();
-u.r = "no"; // ❌ Error
+u.r = 'AK';  // Error
 
-// ---------- Constructors ----------
+// *Constructor*
 class v {
   w: number;
   x: number;
@@ -67,18 +63,18 @@ class y {
   constructor(C: string | number, D: number = 0) {}
 }
 
-// ---------- Super Calls ----------
+// *Super Call*
 class E {
   F = 4;
 }
 class G extends E {
   constructor() {
-    // console.log(this.F); ❌ Must Call Super First
+    console.log(this.F);  // Error - Must Call Super First
     super();
   }
 }
 
-// ---------- Methods ----------
+// *Method*
 class H {
   I = 10;
   J = 10;
@@ -88,7 +84,7 @@ class H {
   }
 }
 
-// ---------- Getters / Setters ----------
+// *Getter - Setter*
 class M {
   private N = 0;
   get O() {
@@ -99,7 +95,7 @@ class M {
   }
 }
 
-// ---------- Index Signatures ----------
+// *Index Signature*
 class Q {
   [R: string]: boolean | ((R: string) => boolean);
   S(R: string) {
@@ -107,51 +103,45 @@ class Q {
   }
 }
 
-// ================================
-// Class Heritage
-// ================================
-
-// ---------- Implements ----------
+// *Implement*
 interface T {
   U(): void;
 }
 class V implements T {
   U() {
-    console.log("ping!");
+    console.log('VAK');
   }
 }
 
-// ---------- Extends ----------
+// *Extend*
 class W {
   X() {
-    console.log("move");
+    console.log('K42');
   }
 }
 class Y extends W {
   Z(A1: number) {
-    for (let B1 = 0; B1 < A1; B1++) console.log("woof");
+    for (let B1 = 0; B1 < A1; B1++) console.log('AK');
   }
 }
 
-// ---------- Overriding ----------
+// *Overriding*
 class C1 {
   D1() {
-    console.log("Hello World");
+    console.log('VAK');
   }
 }
 class E1 extends C1 {
   D1(F1?: string) {
-    if (F1) console.log("Hello " + F1);
+    if (F1) console.log('K' + F1);
     else super.D1();
   }
 }
 
-// ================================
 // Visibility
-// ================================
 class G1 {
   public H1() {
-    console.log("hi");
+    console.log('42');
   }
 }
 class I1 {
@@ -159,7 +149,7 @@ class I1 {
     console.log(this.K1());
   }
   protected K1() {
-    return "protected";
+    return 'Protected';
   }
 }
 class L1 extends I1 {
@@ -171,9 +161,7 @@ class N1 {
   private O1 = 0;
 }
 
-// ================================
-// Static Members
-// ================================
+// Static Member
 class P1 {
   static Q1 = 0;
   static R1() {
@@ -182,42 +170,35 @@ class P1 {
 }
 P1.R1();
 
-// ================================
-// Generic Classes
-// ================================
+// Generic Class
 class S1<T> {
   T1: T;
   constructor(U1: T) {
     this.T1 = U1;
   }
 }
-const V1 = new S1("hello");
+const V1 = new S1('VAK');
 
-// ================================
-// This At Runtime
-// ================================
 class W1 {
-  X1 = "Class";
+  X1 = 'AK42';
   Y1() {
     return this.X1;
   }
 }
 const Z1 = new W1();
-const A2 = { X1: "Obj", Y1: Z1.Y1 };
-console.log(A2.Y1()); // Prints Obj
+const A2 = { X1: 'VAK', Y1: Z1.Y1 };
+console.log(A2.Y1());  // VAK
 
 class B2 {
-  C2 = "Class";
+  C2 = 'K42';
   D2 = () => this.C2;
 }
 const E2 = new B2();
 console.log(E2.D2());
 
-// ================================
-// This Types
-// ================================
+// This
 class F2 {
-  G2: string = "";
+  G2: string = '';
   H2(I2: string): this {
     this.G2 = I2;
     return this;
@@ -225,13 +206,11 @@ class F2 {
 }
 class J2 extends F2 {
   K2() {
-    this.G2 = "";
+    this.G2 = '';
   }
 }
 
-// ================================
-// Parameter Properties
-// ================================
+// Parameter Property
 class L2 {
   constructor(
     public readonly M2: number,
@@ -240,26 +219,22 @@ class L2 {
   ) {}
 }
 
-// ================================
-// Abstract Classes
-// ================================
+// Abstract Class
 abstract class P2 {
   abstract Q2(): string;
   R2() {
-    console.log("Hello " + this.Q2());
+    console.log('TS' + this.Q2());
   }
 }
 class S2 extends P2 {
   Q2() {
-    return "World";
+    return 'OK';
   }
 }
 const T2 = new S2();
 T2.R2();
 
-// ================================
-// Relationships
-// ================================
+// Relationship
 class U2 {
   V2 = 0;
   W2 = 0;
