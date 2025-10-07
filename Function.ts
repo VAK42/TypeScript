@@ -107,19 +107,6 @@ const Y0 = X(12345678);
 const Y2 = X(5, 5, 5);
 const Y4 = X(1, 2);  // Error - Only 1 | 3 Arguments Allowed
 
-// *Declaring 'This'*
-interface ZDB {
-  FilterUsers(Filter: (this: ZUser) => boolean): ZUser[];
-}
-interface ZUser {
-  Admin: boolean;
-}
-declare function GetDB(): ZDB;
-const Z = GetDB();
-const Admins = Z.FilterUsers(function (this: ZUser) {
-  return this.Admin;
-});
-
 // *Special Type*
 // Void
 function AA(): void {
