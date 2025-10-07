@@ -120,7 +120,7 @@ const Admins = Z.FilterUsers(function (this: ZUser) {
   return this.Admin;
 });
 
-// ---------- Special Types ----------
+// *Special Type*
 // Void
 function AA(): void {
   return;
@@ -138,27 +138,26 @@ function AC(X: string | number) {
   } else if (typeof X === "number") {
     // Handle Number
   } else {
-    X; // Has Type Never
+    X;  // Type: Never
   }
 }
 
-// ---------- Rest Parameters ----------
+// *Rest Parameter*
 function AD(N: number, ...M: number[]) {
   return M.map((X) => N * X);
 }
-const AE = AD(10, 1, 2, 3, 4); // [10,20,30,40]
+const AE = AD(10, 1, 2, 3, 4);  // [10,20,30,40]
 
-// ---------- Parameter Destructuring ----------
+// *Parameter Destructuring*
 type AF = { A: number; B: number; C: number };
 function AG({ A, B, C }: AF) {
   console.log(A + B + C);
 }
 AG({ A: 10, B: 3, C: 9 });
 
-// ---------- Void Assignability ----------
+// *Void Assignability*
 type AH = () => void;
 
-// Valid Even If Returning Something
 const AI: AH = () => {
   return true;
 };
@@ -166,13 +165,9 @@ const AJ: AH = () => true;
 const AK: AH = function () {
   return true;
 };
-
-// Return Type Still Void
 const AL = AI();
 const AM = AJ();
 const AN = AK();
-
-// Example With ForEach Expecting Void Function
 const AO = [1, 2, 3];
 const AP = [0];
 AO.forEach((El) => AP.push(El));
