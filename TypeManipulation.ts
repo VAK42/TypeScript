@@ -1,8 +1,5 @@
-// ================================
-// Generics In TypeScript
-// ================================
-
-// ---------- Identity Function ----------
+// **Generics**
+// *Identity Function*
 function a(b: number): number {
   return b;
 }
@@ -12,10 +9,10 @@ function c(d: any): any {
 function e<F>(f: F): F {
   return f;
 }
-let g = e<string>("Hello");
-let h = e("World");
+let g = e<string>('VAK');
+let h = e('VAK');
 
-// ---------- Logging Identity ----------
+// *Logging Identity*
 function i<J>(j: J[]): J[] {
   console.log(j.length);
   return j;
@@ -25,7 +22,7 @@ function k<L>(l: Array<L>): Array<L> {
   return l;
 }
 
-// ---------- Generic Types ----------
+// *Generic Type*
 function m<N>(n: N): N {
   return n;
 }
@@ -42,7 +39,7 @@ interface v<W> {
 }
 let x: v<number> = m;
 
-// ---------- Generic Classes ----------
+// *Generic Class*
 class y<Y> {
   z: Y;
   A: (B: Y, C: Y) => Y;
