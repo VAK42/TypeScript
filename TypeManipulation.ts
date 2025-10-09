@@ -319,22 +319,22 @@ type EE = Uncapitalize<ED>;  // 'vAK'
 
 // *Watched Object*
 type CW<CX> = {
-  on(CY: `${string & keyof CX}Changed`, CZ: (DA: any) => void): void;
+  on(CY: `${string & keyof CX} TS`, CZ: (DA: any) => void): void;
 };
 declare function DB<DC>(DD: DC): DC & CW<DC>;
 
-const DE = DB({ DF: "Name", DG: 30 });
-DE.on("DFChanged", (newVal) => console.log(newVal));
+const DE = DB({ DF: 'VAK', DG: 42 });
+DE.on('DF TS', (val) => console.log(val));
 
 // *Inference With Template*
 type DH<DI> = {
   on<DJ extends string & keyof DI>(
-    DK: `${DJ}Changed`,
+    DK: `${DJ} TS`,
     DL: (DM: DI[DJ]) => void
   ): void;
 };
 declare function DN<DO>(DP: DO): DO & DH<DO>;
 
-const DQ = DN({ DR: "Alice", DS: 20 });
-DQ.on("DRChanged", (DV) => console.log(DV.toUpperCase()));
-DQ.on("DSChanged", (DW) => console.log(DW.toFixed()));
+const DQ = DN({ DR: 'VAK', DS: 42 });
+DQ.on('DR TS', (DV) => console.log(DV.toUpperCase()));
+DQ.on('DS TS', (DW) => console.log(DW.toFixed()));
