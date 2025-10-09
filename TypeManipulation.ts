@@ -271,43 +271,53 @@ interface BK {
   BL: string;
   BM: number;
 }
-type BN = BH<BK>; // { getBL: () => string; getBM: () => number }
+type BN = BH<BK>;  // { getBL: () => string; getBM: () => number }
 
 type BO<BP> = {
-  [BQ in keyof BP as Exclude<BQ, "BR">]: BP[BQ];
+  [BQ in keyof BP as Exclude<BQ, 'BR'>]: BP[BQ];
 };
 interface BS {
-  BR: "circle";
+  BR: 'TS';
   BT: number;
 }
-type BU = BO<BS>; // { BT: number }
+type BU = BO<BS>;  // { BT: number }
 
 type BV<BW extends { BX: string }> = {
-  [BY in BW as BY["BX"]]: (BZ: BY) => void;
+  [BY in BW as BY['BX']]: (BZ: BY) => void;
 };
-type CA = { BX: "square"; CB: number };
-type CC = { BX: "circle"; CD: number };
-type CE = BV<CA | CC>; // { square: (CA) => void; circle: (CC) => void }
+type CA = { BX: 'TS'; CB: number };
+type CC = { BX: 'JS'; CD: number };
+type CE = BV<CA | CC>;  // { TS: (CA) => void; JS: (CC) => void }
 
-// ---------- Conditional + Mapped ----------
+// *Conditional + Mapped*
 type CF<CG> = {
   [CH in keyof CG]: CG[CH] extends { CI: true } ? true : false;
 };
 type CJ = { CK: { CL: string }; CM: { CN: string; CI: true } };
-type CO = CF<CJ>; // { CK: false; CM: true }
+type CO = CF<CJ>;  // { CK: false; CM: true }
 
-// ---------- Template Literal Types ----------
-type CP = "world";
-type CQ = `hello ${CP}`; // "hello world"
+// *Template Literal Type*
+type CP = 'VAK';
+type CQ = `${CP} 42`;  // 'VAK 42'
 
-type CR = "welcome" | "heading";
-type CS = "footer" | "send";
-type CT = `${CR | CS}_id`; // "welcome_id" | "heading_id" | "footer_id" | "send_id"
+type CR = 'A' | 'B';
+type CS = 'C' | 'D';
+type CT = `${CR | CS} TS`;  // 'A TS' | 'B TS' | 'C TS' | 'D TS'
 
-type CU = "en" | "ja";
-type CV = `${CU}_${CT}`; // All combinations
+// *String Manipulation*
+type DX = 'vak';
+type DY = Uppercase<DX>;  // 'VAK'
 
-// ---------- Watched Object ----------
+type DZ = "VAK";
+type EA = Lowercase<DZ>;  // 'vak'
+
+type EB = 'vak';
+type EC = Capitalize<EB>;  // 'Vak'
+
+type ED = 'VAK';
+type EE = Uncapitalize<ED>;  // 'vAK'
+
+// *Watched Object*
 type CW<CX> = {
   on(CY: `${string & keyof CX}Changed`, CZ: (DA: any) => void): void;
 };
@@ -316,7 +326,7 @@ declare function DB<DC>(DD: DC): DC & CW<DC>;
 const DE = DB({ DF: "Name", DG: 30 });
 DE.on("DFChanged", (newVal) => console.log(newVal));
 
-// ---------- Inference With Template ----------
+// *Inference With Template*
 type DH<DI> = {
   on<DJ extends string & keyof DI>(
     DK: `${DJ}Changed`,
@@ -328,16 +338,3 @@ declare function DN<DO>(DP: DO): DO & DH<DO>;
 const DQ = DN({ DR: "Alice", DS: 20 });
 DQ.on("DRChanged", (DV) => console.log(DV.toUpperCase()));
 DQ.on("DSChanged", (DW) => console.log(DW.toFixed()));
-
-// ---------- String Manipulation ----------
-type DX = "Hello";
-type DY = Uppercase<DX>; // "HELLO"
-
-type DZ = "HELLO";
-type EA = Lowercase<DZ>; // "hello"
-
-type EB = "hi";
-type EC = Capitalize<EB>; // "Hi"
-
-type ED = "WOW";
-type EE = Uncapitalize<ED>; // "wOW"
